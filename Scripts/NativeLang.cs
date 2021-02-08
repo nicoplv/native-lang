@@ -14,15 +14,15 @@ namespace NativeLangs
 			#if UNITY_IOS && !UNITY_EDITOR
 			return GetSysLang().Remove(2,3);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
-			using(AndroidJavaClass localClass = new AndroidJavaClass(“java.util.Locale”))
+			using(AndroidJavaClass localClass = new AndroidJavaClass("java.util.Locale"))
 			{
 				if (localClass != null)
 				{
-					using (AndroidJavaObject locale = localClass.CallStatic<AndroidJavaObject>(“getDefault”))
+					using (AndroidJavaObject locale = localClass.CallStatic<AndroidJavaObject>("getDefault"))
 					{
 						if (locale != null)
 						{
-							return locale.Call<string>(“getLanguage”);
+							return locale.Call<string>("getLanguage");
 						}
 					}
 				}
@@ -37,15 +37,15 @@ namespace NativeLangs
 			string syslang = GetSysLang();
 			return syslang.Substring(Mathf.Max(0, syslang.Length - 2));
 			#elif UNITY_ANDROID && !UNITY_EDITOR
-			using(AndroidJavaClass localClass = new AndroidJavaClass(“java.util.Locale”))
+			using(AndroidJavaClass localClass = new AndroidJavaClass("java.util.Locale"))
 			{
 				if (localClass != null)
 				{
-					using (AndroidJavaObject locale = localClass.CallStatic<AndroidJavaObject>(“getDefault”))
+					using (AndroidJavaObject locale = localClass.CallStatic<AndroidJavaObject>("getDefault"))
 					{
 						if (locale != null)
 						{
-							return locale.Call<string>(“getCountry”);
+							return locale.Call<string>("getCountry");
 						}
 					}
 				}
