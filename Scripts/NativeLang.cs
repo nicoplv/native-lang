@@ -12,7 +12,10 @@ namespace NativeLangs
 		public static string GetSystemLanguage()
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return GetSysLang().Remove(2,3);
+			string syslang = GetSysLang();
+			string[] syslangs = syslang.Split(new char[] { '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
+			if(syslang.Length > 0)
+				return syslangs[0];
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			using(AndroidJavaClass localClass = new AndroidJavaClass("java.util.Locale"))
 			{
@@ -35,7 +38,9 @@ namespace NativeLangs
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
 			string syslang = GetSysLang();
-			return syslang.Substring(Mathf.Max(0, syslang.Length - 2));
+			string[] syslangs = syslang.Split(new char[] { '-', '_' }, StringSplitOptions.RemoveEmptyEntries);
+			if(syslang.Length > 1)
+				return syslangs[1];
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			using(AndroidJavaClass localClass = new AndroidJavaClass("java.util.Locale"))
 			{
